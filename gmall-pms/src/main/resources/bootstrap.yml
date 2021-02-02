@@ -5,6 +5,6 @@ spring:
     nacos:
       config:
         server-addr: 127.0.0.1:8848
-        namespace: b35c9386-e992-41cf-9f9f-22d1efe6411f
+        namespace: e012e779-6cae-4077-9c2e-4f223485b3dc
         group: dev
         file-extension: yml
