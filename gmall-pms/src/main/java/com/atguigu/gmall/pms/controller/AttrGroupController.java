@@ -1,22 +1,18 @@
 package com.atguigu.gmall.pms.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.pms.entity.AttrGroupEntity;
+import com.atguigu.gmall.pms.service.AttrGroupService;
+import com.atguigu.gmall.pms.vo.GroupVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.atguigu.gmall.pms.entity.AttrGroupEntity;
-import com.atguigu.gmall.pms.service.AttrGroupService;
-
-
+import java.util.Arrays;
 
 
 /**
@@ -30,8 +26,26 @@ import com.atguigu.gmall.pms.service.AttrGroupService;
 @RestController
 @RequestMapping("pms/attrgroup")
 public class AttrGroupController {
+
+
+
     @Autowired
     private AttrGroupService attrGroupService;
+
+    @GetMapping("withattr/{gid}")
+    public Resp<GroupVO> queryGroupWithAttrsByGid(@PathVariable("gid")Long gid){
+        GroupVO groupVOS = this.attrGroupService.queryGroupWithAttrsByGid(gid);
+
+        return Resp.ok(groupVOS);
+
+    }
+
+    @GetMapping("/{catId}")
+    public Resp<PageVo> querGroupBypage(QueryCondition queryCondition,@PathVariable("catId")Long catId){
+
+        PageVo page = attrGroupService.querGroupBypage(queryCondition,catId);
+        return Resp.ok(page);
+    }
 
     /**
      * 列表
