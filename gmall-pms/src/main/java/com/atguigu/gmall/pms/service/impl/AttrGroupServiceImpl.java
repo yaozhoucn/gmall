@@ -33,7 +33,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
         QueryWrapper<AttrGroupEntity> wrapper = new QueryWrapper<>();
         if (catId != null) {
-            wrapper.eq("catelog_id",catId);
+            wrapper.eq("catelog_id", catId);
         }
         IPage<AttrGroupEntity> iPage = this.page(page, wrapper);
         PageVo pageVo = new PageVo(iPage);
